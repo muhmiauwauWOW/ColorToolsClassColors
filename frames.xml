@@ -1,0 +1,34 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+
+	<Script file="mixins.lua"/>
+
+
+	<Frame name="ColorToolsClassColorsDescTemplate" mixin="ColorToolsClassColorsDescMixin" virtual="true">
+       <Size y="12"/>
+	   <Layers>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Text" inherits="Number14FontWhite" justifyH="LEFT" justifyV="TOP" wordwrap="true">
+					<Anchors>
+						<Anchor point="LEFT" x="0" />
+						<Anchor point="RIGHT" x="0" />
+					</Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+			<OnLoad method="OnLoad"/>
+			<OnShow method="OnShow"/>
+		</Scripts>
+	</Frame>
+
+
+
+	<Frame name="SettingsColorControlTemplate" inherits="SettingsListElementTemplate" mixin="SettingsColorControlMixin" virtual="true">
+		<Size x="280" y="26"/>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+		</Scripts>
+	</Frame>
+
+</Ui>
