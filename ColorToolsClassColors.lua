@@ -158,7 +158,7 @@ function  ColorToolsClassColors.Options:Init()
 			local setting = Settings.RegisterAddOnSetting(category, classNames[key], key, ColorToolsClassColorsDB, "table", classNames[key], defaultValue[key])
 
 			-- why? 
-			if select(4, GetBuildInfo()) < 110000 then
+			if select(4, GetBuildInfo()) < 110000 and select(4, GetBuildInfo()) > 40000 then
 				setting = Settings.RegisterAddOnSetting(category, classNames[key], key, ColorToolsClassColorsDB, ColorToolsClassColorsDB[key], "table", classNames[key], defaultValue[key])
 			end
 
