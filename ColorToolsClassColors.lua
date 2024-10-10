@@ -109,8 +109,10 @@ setmetatable(CUSTOM_CLASS_COLORS, { __index = meta })
 local defaultValue = {}
 
 _.forEach(RAID_CLASS_COLORS, function(entry, key)
-	defaultValue[key] = {entry:GetRGB()}
+	local r,g,b = entry:GetRGB()
+	defaultValue[key] = {r,g,b}
 end)
+
 
 
 ColorToolsClassColors.init = CreateFrame("Frame")
@@ -123,11 +125,20 @@ end)
 
 
 function ColorToolsClassColors:SetColor(key, value)
-	local color = CreateColor(table.unpack(value))
+	local color = CreateColor(value[1], value[2], value[3])
 	color.colorStr = color:GenerateHexColor()
 	CUSTOM_CLASS_COLORS[key] = color
+	ColorToolsClassColorsDB[key] = {value[1], value[2], value[3]}
 end
 
+
+if not LocalizedClassList then
+	LocalizedClassList = function() 
+		local tbl = {}
+		tbl = FillLocalizedClassList(tbl)
+		return tbl
+	end
+end
 
 
 ColorToolsClassColors.Options = {}
@@ -143,14 +154,17 @@ function  ColorToolsClassColors.Options:Init()
 	local classNames = LocalizedClassList()
 
     for key, entry in pairs(ColorToolsClassColorsDB) do
-		local setting = Settings.RegisterAddOnSetting(category, "ColorToolsClassColors" .. key, key, ColorToolsClassColorsDB, "table", classNames[key], defaultValue[key])
-        
-		setting:SetValueChangedCallback(function(self)
-			ColorToolsClassColors:SetColor(key, self:GetValue())
-		end)
-	
-		Settings.CreateColor(category, setting, nil)
-		ColorToolsClassColors:SetColor(key, ColorToolsClassColorsDB[key])
+		if classNames[key] ~= nil then
+			local setting = Settings.RegisterAddOnSetting(category, classNames[key], key, ColorToolsClassColorsDB, "table", classNames[key], defaultValue[key])
+
+			-- why? 
+			if select(4, GetBuildInfo()) < 110000 then
+				setting = Settings.RegisterAddOnSetting(category, classNames[key], key, ColorToolsClassColorsDB, ColorToolsClassColorsDB[key], "table", classNames[key], defaultValue[key])
+			end
+
+			Settings.CreateColor(category, setting, nil)
+			ColorToolsClassColors:SetColor(key, ColorToolsClassColorsDB[key])
+		end
     end
 
     Settings.RegisterAddOnCategory(category)

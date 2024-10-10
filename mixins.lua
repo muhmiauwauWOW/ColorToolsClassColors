@@ -1,4 +1,5 @@
-
+local addonName, ColorToolsClassColors =  ...
+local _ = LibStub("LibLodash-1"):Get()
 
 ColorToolsClassColorsDescMixin = {}
 
@@ -21,7 +22,6 @@ SettingsColorControlMixin = CreateFromMixins(SettingsControlMixin);
 function SettingsColorControlMixin:OnLoad()
 	SettingsControlMixin.OnLoad(self);
     
-
 	self.Colorswatch = CreateFrame("Button", nil, self);
     self.Colorswatch:SetPoint("LEFT", self, "CENTER", -80, 0);
     self.Colorswatch:SetSize(20, 20);
@@ -37,7 +37,7 @@ function SettingsColorControlMixin:OnLoad()
                 self:GetSetting():SetValue({r, g, b}) 
             end,
 			cancelFunc = function()
-                self.Colorswatch.Texture:SetColorTexture(currentValue[1],currentValue[2],currentValue[3])
+                self.Colorswatch.Texture:SetColorTexture(currentValue[1],currentValue[2],currentValue[3], 1)
             end,
 			hasOpacity = false,
 			r = currentValue[1],
@@ -59,13 +59,21 @@ end
 function SettingsColorControlMixin:Init(initializer)
 	SettingsControlMixin.Init(self, initializer);
     local currentValue = self:GetSetting():GetValue()
-    self.Colorswatch.Texture:SetColorTexture(table.unpack(currentValue))
+    self.Colorswatch.Texture:SetColorTexture(currentValue[1], currentValue[2], currentValue[3], 1)
 end
 
 function SettingsColorControlMixin:OnSettingValueChanged(setting, value)
 	SettingsControlMixin.OnSettingValueChanged(self, setting, value);
-    self.Colorswatch.Texture:SetColorTexture(value[1], value[2], value[3])
+    self.Colorswatch.Texture:SetColorTexture(value[1], value[2], value[3], 1)
+
+	local key = self:GetSetting():GetVariable()
+	ColorToolsClassColors:SetColor(key, self:GetSetting():GetValue())
 end
+
+function SettingsColorControlMixin:SetValue(value)
+
+end
+
 
 function SettingsColorControlMixin:Release()
 	SettingsControlMixin.Release(self);
