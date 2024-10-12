@@ -5,21 +5,18 @@
 
 
 	<Frame name="ColorToolsClassColorsDescTemplate" mixin="ColorToolsClassColorsDescMixin" virtual="true">
-       <Size y="12"/>
+       <Size y="40"/>
 	   <Layers>
             <Layer level="OVERLAY">
                 <FontString parentKey="Text" inherits="Number14FontWhite" justifyH="LEFT" justifyV="TOP" wordwrap="true">
 					<Anchors>
+						<Anchor point="TOP" x="0" />
 						<Anchor point="LEFT" x="0" />
 						<Anchor point="RIGHT" x="0" />
 					</Anchors>
                 </FontString>
             </Layer>
         </Layers>
-        <Scripts>
-			<OnLoad method="OnLoad"/>
-			<OnShow method="OnShow"/>
-		</Scripts>
 	</Frame>
 
 

@@ -6,7 +6,6 @@ ignore:
 
 externals:
   Libs/LibStub: https://repos.wowace.com/wow/libstub/trunk
-  Libs/AceLocale-3.0: https://repos.wowace.com/wow/ace3/trunk/AceLocale-3.0
   Libs/LibLodash: https://github.com/muhmiauwauWOW/LibLodash.git
 
 enable-nolib-creation: no

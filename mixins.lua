@@ -3,15 +3,9 @@ local _ = LibStub("LibLodash-1"):Get()
 
 ColorToolsClassColorsDescMixin = {}
 
-function ColorToolsClassColorsDescMixin:OnLoad()
-	C_Timer.After(3, function()
-		local d = self:GetData()
-		self.text = d.data.text
-	end)
-end
-function ColorToolsClassColorsDescMixin:OnShow()
+function ColorToolsClassColorsDescMixin:Init(initializer)
+	self.text = initializer.data.text
 	self.Text:SetText(self.text)
-	self:SetHeight(self.Text:GetStringHeight())
 end
 
 
