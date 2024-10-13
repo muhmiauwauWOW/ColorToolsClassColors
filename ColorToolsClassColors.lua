@@ -3,6 +3,15 @@ if CUSTOM_CLASS_COLORS then return end
 local addonName, ColorToolsClassColors =  ...
 local _ = LibStub("LibLodash-1"):Get()
 
+
+if not LocalizedClassList then
+	LocalizedClassList = function() 
+		local tbl = {}
+		tbl = FillLocalizedClassList(tbl)
+		return tbl
+	end
+end
+
 local L = {};
 local locale = GetLocale()
 
@@ -136,13 +145,6 @@ function ColorToolsClassColors:SetColor(key, value)
 end
 
 
-if not LocalizedClassList then
-	LocalizedClassList = function() 
-		local tbl = {}
-		tbl = FillLocalizedClassList(tbl)
-		return tbl
-	end
-end
 
 
 ColorToolsClassColors.Options = {}
