@@ -41,16 +41,18 @@ end
 
 CUSTOM_CLASS_COLORS = {}
 
-local classNames = LocalizedClassList() 
-
+local classNames = LocalizedClassList()
 local sortedClasses = {}
-for key in pairs(RAID_CLASS_COLORS) do
+
+for key, value in pairs(classNames) do
+	if not RAID_CLASS_COLORS[key] then return end
 	tinsert(sortedClasses, {
 		key = key,
-		value = classNames[key],
+		value = value,
 	})
 end
 
+sort(sortedClasses, function(a, b) return a.value < b.value end)
 
 
 
@@ -157,7 +159,6 @@ function ColorToolsClassColors.Options:Init()
 	local data = { settings = {}, text = L["Desc"] }
 	local initializer = Settings.CreatePanelInitializer("ColorToolsClassColorsDescTemplate", data);
 	layout:AddInitializer(initializer);
-	sort(sortedClasses, function(a, b) return a.key < b.key end)
 
     for idx, value in pairs(sortedClasses) do
 		local ID = value.key
