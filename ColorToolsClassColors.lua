@@ -44,13 +44,10 @@ CUSTOM_CLASS_COLORS = {}
 local classNames = LocalizedClassList()
 local sortedClasses = {}
 
-for key, value in pairs(classNames) do
-	if not RAID_CLASS_COLORS[key] then return end
-	tinsert(sortedClasses, {
-		key = key,
-		value = value,
-	})
-end
+_.forEach(classNames, function(v, k)
+	if not RAID_CLASS_COLORS[k] then return end
+	table.insert(sortedClasses, {key = k, value = v})
+end)
 
 sort(sortedClasses, function(a, b) return a.value < b.value end)
 
