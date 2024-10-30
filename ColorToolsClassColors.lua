@@ -163,11 +163,6 @@ function ColorToolsClassColors.Options:Init()
 		if className ~= nil then
 			local setting = Settings.RegisterAddOnSetting(category, className, ID, ColorToolsClassColorsDB, "table", className, defaultValue[ID])
 
-			-- why? 
-			if select(4, GetBuildInfo()) < 110000 and select(4, GetBuildInfo()) > 40000 then
-				setting = Settings.RegisterAddOnSetting(category, className, ID, ColorToolsClassColorsDB, ColorToolsClassColorsDB[ID], "table", className, defaultValue[ID])
-			end
-
 			Settings.CreateColor(category, setting, nil)
 			ColorToolsClassColors:SetColor(ID, ColorToolsClassColorsDB[ID])
 		end
