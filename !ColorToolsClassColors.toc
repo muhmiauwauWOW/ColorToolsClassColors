@@ -1,4 +1,4 @@
-﻿## Interface: 110100, 40401, 11505
+﻿## Interface: 110105, 40402, 11507
 ## Title: ColorTools Class Colors
 ## Notes: Custom Class Colors
 ## Version: @project-version@
