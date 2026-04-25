@@ -1,4 +1,4 @@
-﻿## Interface: 120001, 50500, 11507
+﻿## Interface: 120005, 50500, 11507
 ## Title: ColorTools Class Colors
 ## Notes: Custom Class Colors
 ## Version: @project-version@
